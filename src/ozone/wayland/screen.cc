@@ -35,6 +35,11 @@ const int k180DegreesCounterClockwise = 180;
 const int k270DegreesCounterClockwise = 270;
 }  // namespace
 
+static void
+display_handle_scale(void *data, struct wl_output *output, int32_t scale)
+{
+}
+
 WaylandScreen::WaylandScreen(wl_registry* registry, uint32_t id)
     : output_(nullptr),
 #if defined(OS_WEBOS)
@@ -46,7 +51,7 @@ WaylandScreen::WaylandScreen(wl_registry* registry, uint32_t id)
     WaylandScreen::OutputHandleGeometry,
     WaylandScreen::OutputHandleMode,
 #if defined(OS_WEBOS)
-    WaylandScreen::OutputDone,
+    WaylandScreen::OutputDone, display_handle_scale,
 #endif
   };
 
